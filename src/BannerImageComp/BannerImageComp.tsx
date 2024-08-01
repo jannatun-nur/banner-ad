@@ -46,7 +46,11 @@ const BannerImageComp = () => {
         {backgrounds.map((background) => (
           <div key={background.id} className="relative">
             <Card background={background} />
-            <MdModeEdit onClick={() => handleEdit(background.id)} />
+            <MdModeEdit 
+              onClick={() => handleEdit(background.id)} 
+              className="absolute top-0 right-0 m-2 cursor-pointer text-white bg-blue-800 
+              border border-white p-1 rounded-full text-4xl"
+            />
           </div>
         ))}
       </div>
