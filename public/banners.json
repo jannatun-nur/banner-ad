@@ -1,0 +1,51 @@
+[
+    {
+      "id": 1,
+      "title": "Banner 1",
+      "description": "Description for Banner 1",
+      "cta": "Learn More",
+      "image": "https://i.ibb.co/N9zDScM/5.png"
+
+    },
+    {
+      "id": 2,
+      "title": "Banner 2",
+      "description": "Description for Banner 2",
+      "cta": "Learn More",
+      "image": "https://i.ibb.co/N9zDScM/5.png"
+     
+    },
+    {
+      "id": 3,
+      "title": "Banner 1",
+      "description": "Description for Banner 1",
+      "cta": "Learn More",
+      "image": "https://i.ibb.co/N9zDScM/5.png"
+
+    },
+    {
+      "id": 4,
+      "title": "Banner 2",
+      "description": "Description for Banner 2",
+      "cta": "Learn More",
+      "image": "https://i.ibb.co/N9zDScM/5.png"
+     
+    },
+    {
+      "id": 5,
+      "title": "Banner 1",
+      "description": "Description for Banner 1",
+      "cta": "Learn More",
+      "image": "https://i.ibb.co/N9zDScM/5.png"
+
+    },
+    {
+      "id": 6,
+      "title": "Banner 2",
+      "description": "Description for Banner 2",
+      "cta": "Learn More",
+      "image": "https://i.ibb.co/N9zDScM/5.png"
+     
+    }
+  ]
+  
