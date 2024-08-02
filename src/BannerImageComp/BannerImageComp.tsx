@@ -1,4 +1,5 @@
-'use client'
+"use client";
+
 import { useEffect, useState } from "react";
 import { MdModeEdit } from "react-icons/md";
 import EditBanner from "@/EditBanner/EditBanner";
@@ -12,14 +13,14 @@ const BannerImageComp = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch('banners.json')
-      .then(res => res.json())
-      .then(data => setBackgrounds(data))
-      .catch(error => console.error('Error fetching data:', error));
+    fetch("banners.json")
+      .then((res) => res.json())
+      .then((data) => setBackgrounds(data))
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   const handleEdit = (id) => {
-    const data = backgrounds.find(banner => banner.id === id);
+    const data = backgrounds.find((banner) => banner.id === id);
     setEditId(id);
     setCurrentData(data);
     setIsEditing(true);
@@ -27,8 +28,8 @@ const BannerImageComp = () => {
   };
 
   const handleSave = (updatedData) => {
-    setBackgrounds(prevBackgrounds => 
-      prevBackgrounds.map(banner => 
+    setBackgrounds((prevBackgrounds) =>
+      prevBackgrounds.map((banner) =>
         banner.id === editId ? { ...banner, ...updatedData } : banner
       )
     );
@@ -46,21 +47,22 @@ const BannerImageComp = () => {
         {backgrounds.map((background) => (
           <div key={background.id} className="relative">
             <Card background={background} />
-            <MdModeEdit 
-              onClick={() => handleEdit(background.id)} 
+            <MdModeEdit
+              onClick={() => handleEdit(background.id)}
               className="absolute top-0 right-0 m-2 cursor-pointer text-white bg-blue-800 
               border border-white p-1 rounded-full text-4xl"
             />
           </div>
         ))}
       </div>
-      {isEditing && 
-        <EditBanner 
-          isOpen={showModal} 
-          onClose={handleCloseEdit} 
-          data={currentData} 
-          onSave={handleSave} 
-        />}
+      {isEditing && (
+        <EditBanner
+          isOpen={showModal}
+          onClose={handleCloseEdit}
+          data={currentData}
+          onSave={handleSave}
+        />
+      )}
     </div>
   );
 };
