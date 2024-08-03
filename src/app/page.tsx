@@ -6,7 +6,7 @@ import BannerImageComp from "@/BannerImageComp/BannerImageComp";
 export default function Home() {
   return (
     <main >
-        <div>
+        <div className="min-h-screen bg-blue-300 my-3">
         <BannerImageComp/>
         
       

@@ -1,7 +1,6 @@
-"use client";
-
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+import Image from "next/image";
 
 interface EditBannerProps {
   isOpen: boolean;
@@ -15,10 +14,18 @@ const EditBanner: React.FC<EditBannerProps> = ({
   onClose,
   data,
   onSave,
-  
 }) => {
   const [formData, setFormData] = useState(data);
   const [tempImage, setTempImage] = useState<string | null>(null);
+  const [visible, setVisible] = useState(isOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+      setVisible(true);
+    } else {
+      setTimeout(() => setVisible(false), 300); // match the transition duration
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     setFormData(data);
@@ -51,52 +58,57 @@ const EditBanner: React.FC<EditBannerProps> = ({
     }
   };
 
-  if (!isOpen) return null;
+  if (!visible) return null;
 
   return (
     <>
-
-      <input
-        type="checkbox"
-        id="my_modal_7"
-        className="modal-toggle"
-        checked={isOpen}
-        readOnly
-      />
-      <div className="modal" role="dialog">
-        <div className="modal-box">
-          <h3 className="text-lg font-bold">Edit Banner</h3>
+      <div
+        className={`fixed inset-0 z-50 flex items-end justify-center transition-transform duration-300 ease-out transform ${
+          isOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+        }`}
+      >
+        <div className="modal-box bg-white w-10/12 lg:w-full relative">
+          <button
+            onClick={onClose}
+            className="text-white bg-blue-800 border border-white p-1 rounded-full text-2xl absolute top-2 right-2"
+          >
+            <IoMdCloseCircleOutline />
+          </button>
+          <h3 className="text-lg font-bold font-serif text-blue-800 text-center my-4">
+            Edit Banner
+          </h3>
           <div className="py-4">
-            <p>Title</p>
+            <p className="text-lg font-bold font-serif text-blue-600 py-3">
+              Title
+            </p>
             <input
               type="text"
               name="title"
               value={formData.title}
               onChange={handleChange}
-              className="input input-bordered w-full mb-4"
+              className="input input-bordered w-full mb-6 bg-white border border-blue-800 text-blue-600 font-semibold font-serif shadow-xl shadow-blue-400"
               placeholder="Title"
             />
-
-              <p>Description</p>
+            <p className="text-lg font-bold font-serif text-blue-600 py-3">
+              Description
+            </p>
             <input
               type="text"
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="input input-bordered w-full mb-4"
+              className="input input-bordered w-full mb-6 bg-white border border-blue-800 text-blue-600 font-semibold font-serif shadow-xl shadow-blue-400"
               placeholder="Description"
             />
-
-
-
-
-            <p>Image</p>
-            <div className="mb-4">
+            <p className="text-lg font-bold font-serif text-blue-600 py-3">
+              Image
+            </p>
+            <div className="p-4 mb-6 bg-white border border-blue-800 text-blue-600 font-semibold font-serif shadow-xl shadow-blue-400 rounded-lg">
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="input input-bordered w-full"
+                className="input input-bordered w-full bg-white"
               />
               {(tempImage || formData.image) && (
                 <Image
@@ -108,22 +120,23 @@ const EditBanner: React.FC<EditBannerProps> = ({
                 />
               )}
             </div>
-            <button onClick={handleSave} className="btn btn-primary mr-2">
-              Save
-            </button>
-            <button onClick={onClose} className="btn">
-              Close
-            </button>
+            <div className="flex">
+              <button
+                onClick={handleSave}
+                className="px-3 py-1 md:ml-32 lg:ml-0 lg:px-5 lg:py-2 rounded-xl bg-gradient-to-r from-indigo-800 via-blue-600 to-blue-400 text-white font-serif mt-5 text-xl"
+              >
+                Save
+              </button>
+            </div>
           </div>
         </div>
-        <label
-          className="modal-backdrop"
-          htmlFor="my_modal_7"
-          onClick={onClose}
-        >
-          Close
-        </label>
       </div>
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50"
+          onClick={onClose}
+        ></div>
+      )}
     </>
   );
 };

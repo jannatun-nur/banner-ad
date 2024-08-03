@@ -9,7 +9,7 @@ const Card = ({ background }) => {
   return (
     <div
       style={{ background: `url(${bkground})` }}
-      className="lg:h-[380px] h-[380px] bg-cover bg-center"
+      className="lg:h-[380px] h-[380px] bg-cover bg-center rounded-lg mx-2"
     >
       <div className="lg:flex lg:gap-24 lg:px-4 grid-cols-1">
         <div className="w-full lg:w-1/2 lg:mt-24">
@@ -29,13 +29,14 @@ const Card = ({ background }) => {
             {cta}
           </button>
         </div>
-        <div className="lg:mt-20 mt-3 md:mt-3">
+        <div className="lg:mt-20 mt-4 md:mt-3">
           <Image
             src={image}
             alt="image"
             width={width}
             height={height}
-            className="rounded-e-badge shadow-2xl shadow-slate-600  border-gray-800 ml-20 md:ml-28 lg:ml-0"
+            className="rounded-e-badge shadow-2xl shadow-slate-600  border-gray-800 ml-20 md:ml-28 lg:ml-0 w-[170px] h-[150px]"
+            
           />
         </div>
       </div>
